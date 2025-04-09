@@ -52,6 +52,13 @@ sourceSets {
         java.srcDir(querydslGeneratedDir)
     }
 }
+//
+//def querydslSrcDir = 'src/main/generated'
+//clean {
+//    delete(querydslGeneratedDir)
+//}
+
+
 
 tasks.withType<JavaCompile>().configureEach {
     options.generatedSourceOutputDirectory.set(querydslGeneratedDir)
