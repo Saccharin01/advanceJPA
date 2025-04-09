@@ -12,4 +12,20 @@ public interface ProductRepository  extends JpaRepository<Product, Long> {
     Product queryByNumber(Long number);
 
     boolean existsByName(String name);
+    boolean existsByNumber(Long number);
+
+    long countByName(String name);
+
+    void deleteByNumber(Long number);
+    void deleteByName(String name);
+
+    long removeByNumber(Long number);
+
+    List<Product> findFirst5ByName(String name);
+    List<Product> findTop10ByName(String name);
+
+    Product findByNumberIs(Long number);
+    Product findByNameEquals(String name);
+
+    List<Product> findByUpdateAtIsNull();
 }
