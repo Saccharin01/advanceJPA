@@ -4,22 +4,40 @@ import com.springboot.advanced_jpa.data.dao.ProductDAO;
 import com.springboot.advanced_jpa.data.dto.ProductDTO;
 import com.springboot.advanced_jpa.data.entity.Product;
 
+import com.springboot.advanced_jpa.data.repository.QProductRepository;
 import com.springboot.advanced_jpa.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.springboot.advanced_jpa.data.dto.ProductResponseDTO;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductServiceImpl implements ProductService {
 
     private final ProductDAO productDAO;
+    private final QProductRepository productRepository;
 
     @Autowired
-    public ProductServiceImpl(ProductDAO productDAO) {
-
+    public ProductServiceImpl(ProductDAO productDAO, QProductRepository productRepository) {
         this.productDAO = productDAO;
+        this.productRepository = productRepository;
+    }
+
+    @Override
+    public List<ProductResponseDTO> getProductALL(){
+        List<Product> products = productRepository.findAll();
+
+        return products.stream()
+                .map(product -> new ProductResponseDTO(
+                        product.getNumber(),
+                        product.getName(),
+                        product.getPrice(),
+                        product.getStock()
+                ))
+                .collect(Collectors.toList());
     }
 
     @Override
