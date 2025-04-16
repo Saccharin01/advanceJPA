@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import io.swagger.v3.oas.annotations.Operation;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(value = "/product")
 public class ProductController {
@@ -72,5 +74,14 @@ public class ProductController {
         productService.deleteProduct(number);
 
         return ResponseEntity.status(HttpStatus.OK).body("정상적으로 삭제되었습니다.");
+    }
+
+    @Operation(
+            summary = "상품 전체 조회",
+            description = "데이터베이스에 존재하는 모든 데이터를 가져옵니다."
+    )
+    @GetMapping(value = "/all")
+    public List<ProductResponseDTO> getAllProduct() {
+        return productService.getProductALL();
     }
 }
