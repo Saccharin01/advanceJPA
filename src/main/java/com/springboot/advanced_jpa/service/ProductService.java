@@ -2,8 +2,11 @@ package com.springboot.advanced_jpa.service;
 
 import com.springboot.advanced_jpa.data.dto.ProductDTO;
 import com.springboot.advanced_jpa.data.dto.ProductResponseDTO;
+import java.util.List;
 
 public interface ProductService {
+
+    List<ProductResponseDTO> getProductALL();
 
     ProductResponseDTO getProduct(Long number);
 
