@@ -35,7 +35,9 @@ public class ProductServiceImpl implements ProductService {
                         product.getNumber(),
                         product.getName(),
                         product.getPrice(),
-                        product.getStock()
+                        product.getStock(),
+                        product.getCreateAt(),
+                        product.getUpdateAt()
                 ))
                 .collect(Collectors.toList());
     }
